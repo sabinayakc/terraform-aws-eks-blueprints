@@ -43,7 +43,7 @@ module "eks_blueprints" {
   source = "../.."
 
   cluster_name    = local.name
-  cluster_version = "1.23"
+  cluster_version = "1.24"
 
   vpc_id             = module.vpc.vpc_id
   private_subnet_ids = module.vpc.private_subnets
@@ -128,6 +128,7 @@ module "eks_blueprints_kubernetes_addons" {
   amazon_prometheus_workspace_endpoint = module.managed_prometheus.workspace_prometheus_endpoint
 
   enable_aws_for_fluentbit                 = true
+  aws_for_fluentbit_create_cw_log_group    = false
   aws_for_fluentbit_cw_log_group_retention = 30
   aws_for_fluentbit_helm_config = {
     create_namespace = true
